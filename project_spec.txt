@@ -1,0 +1,15 @@
+Server:
+    Listens on a TCP port.
+    Accepts incoming client connections.
+    Keeps track of all connected clients.
+    For each incoming message, forwards (“broadcasts”) it to every other client.
+Client:
+    Connects to the server's address and port
+    Runs two loops in parallel:
+        Receiver: Listens for messages from the server and prints them
+        Sender: Reads user input from the terminal and sends it to the server
+
+Concurency model:
+    Threading:  Each client handler runs in its own thread on the server side.
+                Each client has a receiver thread
+    select/asyncio: Scales better for many connections, but a bit more involved.
